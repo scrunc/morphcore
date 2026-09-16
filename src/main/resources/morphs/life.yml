@@ -1,0 +1,12 @@
+id: life
+name: "&a&lGame of Life"
+icon: MOSS_BLOCK
+lore:
+  - "&aConway's Game of Life growth —"
+  - "&agliders & organic bloom."
+style:
+  generator: life
+  params:
+    seed-density: 0.32
+    generations: 40
+    step: 2.5

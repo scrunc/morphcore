@@ -1,0 +1,8 @@
+id: rain
+name: "&b&lDigital Rain"
+icon: PRISMARINE_SHARD
+lore:
+  - "&bVertical streams drain top→floor,"
+  - "&bstaggered like falling code."
+style:
+  score: "(sizeY - 1 - y) + ((noise(x * 12.9898, z * 78.233) + 1) * 0.5) * 18"

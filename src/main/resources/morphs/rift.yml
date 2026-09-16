@@ -1,0 +1,10 @@
+# Generator-backed pack: the "rift" algorithm (jagged seam + portal-energy FX) lives in Java;
+# this file just supplies the presentation. Generators: rift | meteor | life | shatter.
+id: rift
+name: "&5&lSpace Rift"
+icon: END_PORTAL_FRAME
+lore:
+  - "&5A rift tears open along a jagged seam;"
+  - "&5corruption bleeds out both sides."
+style:
+  generator: rift

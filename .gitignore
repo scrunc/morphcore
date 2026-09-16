@@ -1,0 +1,24 @@
+# Gradle build & cache
+.gradle/
+build/
+bin/
+out/
+
+# IDE / Editor files
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Backups & Logs
+*.log
+*.bak
+*.bak-*
+*.tmp
+*.tmp.*
+
+# OS
+.DS_Store
+Thumbs.db

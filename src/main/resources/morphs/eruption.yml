@@ -1,0 +1,20 @@
+# Generator-backed pack: the "eruption" algorithm (upward block-flight) lives in Java; this file supplies
+# the presentation and optional knob overrides. Generators: rift | meteor | life | shatter |
+#                                                            eruption | geyser | upheaval | springup.
+id: eruption
+name: "&c&lEruption"
+icon: MAGMA_BLOCK
+lore:
+  - "&cThe arena blasts UP out of the ground —"
+  - "&cvolcanic ejecta arcs from each crater as"
+  - "&cthe build grows bottom-up. Lava, smoke, shake."
+style:
+  generator: eruption
+  params:
+    apex: 11            # how high the ejecta is thrown (blocks)
+    stagger: 0.5        # 0..1 — how spread-out the eruptions are across the morph
+    order: center-out   # center-out | wave | random
+    shake: true         # kick nearby players on each eruption
+    # patches: 0        # 0 = auto by area; set a number to force the eruption-point count
+    # block: MAGMA_BLOCK # the flying ejecta block
+    # scale: 1.4        # ejecta cube size

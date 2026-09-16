@@ -1,0 +1,6 @@
+name: MorphCore
+version: ${version}
+main: dev.servereer.morphcore.MorphCorePlugin
+api-version: '1.21'
+author: servereer
+description: Shared arena-morph engine — animates a region from one captured block/display state into another (sweep, meteor, organic, rise, and other choreographies), published as a Bukkit service for KOTH and future consumers.

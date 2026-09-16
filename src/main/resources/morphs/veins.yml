@@ -1,0 +1,8 @@
+id: veins
+name: "&2&lLiving Veins"
+icon: SCULK_VEIN
+lore:
+  - "&2Corruption crawls out along branching"
+  - "&2tendrils & veins (ridged noise)."
+style:
+  score: "r - 22 * pow(ridge(wx * 0.06, wz * 0.06), 2.2)"

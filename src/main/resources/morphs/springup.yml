@@ -1,0 +1,14 @@
+# Generator-backed pack — see eruption.yml for the full generator list & knob notes.
+id: springup
+name: "&a&lSpring-Up"
+icon: SLIME_BLOCK
+lore:
+  - "&aBlocks pop up out of the floor in a fast"
+  - "&aspreading wave — light, snappy, bouncy."
+style:
+  generator: springup
+  params:
+    apex: 3           # a little hop, not a launch
+    order: wave       # center-out | wave | random
+    # block: LIME_CONCRETE
+    # scale: 0.8

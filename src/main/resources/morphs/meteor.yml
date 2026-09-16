@@ -1,0 +1,9 @@
+id: meteor
+name: "&c&lMeteor Shower"
+icon: FIRE_CHARGE
+lore:
+  - "&cGlowing blocks fall & splatter the"
+  - "&carena in organic blobs on impact."
+  - "&8Tune meteor.* in config.yml."
+style:
+  generator: meteor

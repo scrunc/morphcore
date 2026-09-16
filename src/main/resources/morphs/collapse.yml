@@ -1,0 +1,9 @@
+id: collapse
+name: "&c&lImplosion"
+icon: PISTON
+lore:
+  - "&cThe front closes edges→centre."
+  - "&8Set arena.collapse.implode-players: true in"
+  - "&8config to yank players inward at the end."
+style:
+  score: "0 - r"

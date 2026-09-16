@@ -1,0 +1,16 @@
+# Generator-backed pack — see eruption.yml for the full generator list & knob notes.
+id: upheaval
+name: "&6&lUpheaval"
+icon: DEEPSLATE
+lore:
+  - "&6The ground heaves — huge slabs of terrain"
+  - "&6are thrown up and crash back as the new"
+  - "&6arena. Heavy, slow, tectonic."
+style:
+  generator: upheaval
+  params:
+    apex: 6           # slabs are heavy — thrown low, not high
+    scale: 2.2        # big chunks
+    shake: true
+    # order: random   # center-out | wave | random
+    # block: STONE

@@ -1,0 +1,13 @@
+# Stock morph pack. Copy this file, rename it, change the id, and edit `score` to make your own
+# choreography — drop it in /plugins/Koth/morphs/, run /koth reload, and it shows up in /koth start.
+# Formula vars: x y z  wx wy wz  dx dz  r  angle  cx cz  sizeX sizeY sizeZ  seamSin seamCos
+# Functions: sqrt abs sign floor ceil round frac sin cos tan exp log  min max pow hypot atan2 noise ridge
+#            clamp(v,lo,hi)  fbm(a,b,oct)  warped(a,b,freq,oct,warp).   LOWER score = revealed sooner.
+id: sweep
+name: "&f&lSweep"
+icon: STONE
+lore:
+  - "&7A clean ring expands centre→edge."
+  - "&8Geometric — simple and tidy."
+style:
+  score: "r"

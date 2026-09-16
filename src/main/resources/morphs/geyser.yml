@@ -1,0 +1,15 @@
+# Generator-backed pack — see eruption.yml for the full generator list & knob notes.
+id: geyser
+name: "&b&lGeyser Columns"
+icon: PRISMARINE
+lore:
+  - "&bTall jets of water & steam erupt upward"
+  - "&bone after another; each column builds up"
+  - "&bunder its own plume."
+style:
+  generator: geyser
+  params:
+    apex: 16          # jet height (blocks)
+    order: random     # center-out | wave | random
+    # block: PRISMARINE
+    # scale: 0.9

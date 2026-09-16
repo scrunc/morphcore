@@ -1,0 +1,9 @@
+id: spiral
+name: "&5&lBlack Hole"
+icon: ECHO_SHARD
+lore:
+  - "&5A galactic arm winds out from the centre."
+  - "&8Raise the 0.35 for more turns; add arms by"
+  - "&8multiplying the frac() term (e.g. * 2)."
+style:
+  score: "r * 0.35 + frac((angle + 3.14159265) / 6.2831853)"

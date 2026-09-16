@@ -1,0 +1,8 @@
+id: spread
+name: "&a&lSpread"
+icon: SLIME_BLOCK
+lore:
+  - "&7An organic blob creeps outward in"
+  - "&7irregular lobes & tendrils (noise)."
+style:
+  score: "r + 14 * warped(wx, wz, 0.05, 4, 8)"

@@ -1,0 +1,10 @@
+id: shatter
+name: "&f&lShatter"
+icon: GLASS
+lore:
+  - "&fThe arena bursts in as randomly-"
+  - "&fordered jagged Voronoi shards."
+style:
+  generator: shatter
+  params:
+    shards: 0     # 0 = auto (~1 per 300 blocks of footprint)
