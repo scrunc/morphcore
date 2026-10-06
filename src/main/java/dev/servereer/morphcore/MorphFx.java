@@ -47,6 +47,8 @@ public final class MorphFx {
     private Location riftA, riftB;   // RIFT seam endpoints; null = no rift FX
     private final Map<Integer, Meteor> live = new HashMap<>();
     private final List<Player> audience = new ArrayList<>();
+    /** Everyone whose client sky we overrode — reset ALL of them on dispose, even if they wandered off. */
+    private final java.util.Set<java.util.UUID> darkened = new java.util.HashSet<>();
     private int nextId = 1;
     private boolean started;
 
@@ -76,11 +78,35 @@ public final class MorphFx {
             if (spec.title != null && !spec.title.isBlank()) {
                 p.sendTitle(Colors.translate(spec.title), Colors.translate(spec.subtitle == null ? "" : spec.subtitle), 8, 45, 20);
             }
-            if (spec.darkenSky) {
+        }
+        syncSky();
+    }
+
+    /** Darken the sky for the current audience and give it back to anyone who left the range. */
+    private void syncSky() {
+        if (!spec.darkenSky) return;
+        java.util.Set<java.util.UUID> in = new java.util.HashSet<>();
+        for (Player p : audience) {
+            in.add(p.getUniqueId());
+            if (darkened.add(p.getUniqueId())) {
                 p.setPlayerWeather(WeatherType.DOWNFALL);
                 p.setPlayerTime(17500L, false);
             }
         }
+        darkened.removeIf(id -> {
+            if (in.contains(id)) return false;
+            Player p = plugin.getServer().getPlayer(id);
+            if (p != null) { p.resetPlayerWeather(); p.resetPlayerTime(); }
+            return true;
+        });
+    }
+
+    private void restoreSky() {
+        for (java.util.UUID id : darkened) {
+            Player p = plugin.getServer().getPlayer(id);
+            if (p != null) { p.resetPlayerWeather(); p.resetPlayerTime(); }
+        }
+        darkened.clear();
     }
 
     /** Called every tick; {@code frac} is overall morph progress 0..1, {@code tick} the elapsed tick count. */
@@ -90,6 +116,7 @@ public final class MorphFx {
         // keep audience/boss-bar membership fresh as players wander in/out
         if (tick % 20 == 0) {
             refreshAudience();
+            syncSky();
             if (bossBar != null) {
                 bossBar.getPlayers().forEach(p -> { if (!audience.contains(p)) bossBar.removePlayer(p); });
                 for (Player p : audience) if (!bossBar.getPlayers().contains(p)) bossBar.addPlayer(p);
@@ -123,9 +150,7 @@ public final class MorphFx {
         for (Meteor m : live.values()) if (m.entity != null && !m.entity.isDead()) m.entity.remove();
         live.clear();
         if (bossBar != null) { bossBar.removeAll(); bossBar = null; }
-        if (spec.darkenSky) {
-            for (Player p : audience) { p.resetPlayerWeather(); p.resetPlayerTime(); }
-        }
+        restoreSky();
         started = false;
     }
 

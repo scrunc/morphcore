@@ -1,0 +1,52 @@
+# Builds MorphCore and publishes a GitHub Release whenever a version tag (v*) is pushed.
+# Release notes = the CHANGELOG.md section for that version + every commit since the previous tag.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0            # full history + tags for the commit list
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon build -x test
+
+      - name: Release notes (changelog section + commits since previous tag)
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VER="${TAG#v}"
+          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
+          {
+            awk -v v="$VER" 'index($0, "## [" v "]") == 1 {p=1; next} /^## \[/ {if (p) exit} p' CHANGELOG.md
+            echo
+            echo "## Commits"
+            if [ -n "$PREV" ]; then
+              echo "_Since ${PREV}_"
+              git log --no-merges --pretty='- %s (%h) — %an' "${PREV}..${TAG}"
+            else
+              git log --no-merges --pretty='- %s (%h) — %an' "${TAG}"
+            fi
+          } > RELEASE_NOTES.md
+          cat RELEASE_NOTES.md
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: MorphCore ${{ github.ref_name }}
+          body_path: RELEASE_NOTES.md
+          files: build/libs/*.jar
